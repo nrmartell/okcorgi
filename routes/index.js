@@ -11,11 +11,11 @@ var Dog = require('../models/dog');
  
 // });
 router.get('/', function(req, res, next) {
-console.log("one");
+// console.log("one");
                     var name= Dog.name;
                     var url = Dog.url;
     var puppy = function(){
-console.log("two");
+// console.log("two");
     	Dog.count(function(err,count){
     		if (err){
     			var dog = null;
@@ -25,12 +25,9 @@ console.log("two");
     			var i = Math.floor(Math.random()* count--);
     			Dog.find({}, function(err, dawg){
     				
-    				console.log("three");
     				
-                    var dog = dawg[i]["dawg"];
-    				res.render('index', {title: "Ok Corgi", dawg:dawg, url: url, name:name});
-                    console.log("four");
-                    console.log(dawg[i]);
+                    var dawg = dawg[i];
+    				res.render('index', {title: "Ok Corgi", id: dawg.id, url: dawg.url, name: dawg.name});
     			});
     		}
 
@@ -38,7 +35,7 @@ console.log("two");
     	});
 
     }
-console.log("fives");
+
 puppy();
 
 })
